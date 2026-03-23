@@ -1,5 +1,5 @@
 {
-    "checkoutUrl": "https://cacaushow-br.shop/comprar",
+    "checkoutUrl": "/comprar",
     "sections": [
         {
             "title": "Especial de Páscoa",
