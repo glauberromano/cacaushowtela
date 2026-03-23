@@ -5,6 +5,10 @@
       "destination": "/api/checkout"
     },
     {
+      "source": "/comprarf",
+      "destination": "/api/checkoutf"
+    },
+    {
       "source": "/f",
       "destination": "/f/index.html"
     }
