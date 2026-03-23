@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/comprar",
+      "destination": "/api/checkout"
+    },
+    {
+      "source": "/comprar/:path*",
+      "destination": "/api/checkout/:path*"
+    }
+  ]
+}
