@@ -9,7 +9,7 @@ export default function handler(req, res) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Cacau Show | Finalizar Compra</title>
-    <link rel="icon" href="https://cacaushow-br.shop/logo.png">
+    <link rel="icon" href="https://cacaushow-br.shop/favicon.png">
     <style>
         /* Estilo para cobrir a tela inteira sem bordas ou rolagem dupla */
         body, html { 
