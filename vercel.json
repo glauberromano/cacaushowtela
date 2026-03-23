@@ -3,6 +3,10 @@
     {
       "source": "/comprar",
       "destination": "/api/checkout"
+    },
+    {
+      "source": "/f",
+      "destination": "/f/index.html"
     }
   ]
 }
