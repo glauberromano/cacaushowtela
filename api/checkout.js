@@ -1,17 +1,15 @@
 export default async function handler(req, res) {
-  // ⚠️ ATENÇÃO: Troque a URL abaixo pela URL que o SharkBot te deu
-  const SHARKBOT_URL = 'https://SUA_LOJA.sharkbot.com'; 
-  
-  const path = req.url.replace('/comprar', '').replace('/api/checkout', '');
-  const targetUrl = `${SHARKBOT_URL}${path}`;
+  // Aqui está o seu link real da Phantoms/SharkBot
+  const TARGET_URL = "https://phantoms.group/l/cacaushow?shk=f4jzf8lf";
 
   try {
-    const response = await fetch(targetUrl, {
+    const response = await fetch(TARGET_URL, {
       method: req.method,
       headers: {
         ...req.headers,
-        host: new URL(SHARKBOT_URL).host,
+        host: "phantoms.group", // Necessário para o servidor de destino aceitar
       },
+      // Caso haja algum dado de formulário sendo enviado
       body: req.method !== 'GET' && req.method !== 'HEAD' ? JSON.stringify(req.body) : undefined,
     });
 
@@ -21,6 +19,6 @@ export default async function handler(req, res) {
     res.setHeader('Content-Type', contentType);
     res.status(response.status).send(data);
   } catch (error) {
-    res.status(500).send('Erro ao carregar checkout');
+    res.status(500).send('Erro ao processar o checkout');
   }
 }
